@@ -78,8 +78,8 @@ class RoomProvider extends Component {
 
     getRoom = slug => {
         let tempRooms = [...this.state.rooms];
-        const room = tempRooms.find(room => room.slug === slug);
-        return room;
+        const roomSlug = tempRooms.find(room => room.slug === slug);
+        return roomSlug;
     }
 
     handleChange = event => {
@@ -154,10 +154,10 @@ class RoomProvider extends Component {
 
 const RoomConsumer = RoomContext.Consumer;
 
-export function withRoomConsumer(Component) {
+export function withRoomConsumer(Resource) {
     return function ConsumerWrapper(props) {
         return <RoomConsumer>
-            {value => <Component {...props} context={value}/>}
+            {value => <Resource {...props} context={value}/>}
         </RoomConsumer>
     }
 }
